@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Airplane</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ airplane.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ airplane.name }}</td>
+            </tr>
+            <tr>
+                <th>Prodyear</th>
+                <td>{{ airplane.prodYear }}</td>
+            </tr>
+            <tr>
+                <th>Manufacturer</th>
+                <td>{{ airplane.manufacturer }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ airplane.model }}</td>
+            </tr>
+            <tr>
+                <th>Maxpassengers</th>
+                <td>{{ airplane.maxPassengers }}</td>
+            </tr>
+            <tr>
+                <th>Maxload</th>
+                <td>{{ airplane.maxLoad }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('airplane_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('airplane_edit', { 'id': airplane.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
