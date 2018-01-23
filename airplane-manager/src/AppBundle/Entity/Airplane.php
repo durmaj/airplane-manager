@@ -217,4 +217,10 @@ class Airplane
     {
         return $this->maxLoad;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }

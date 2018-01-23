@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.19)
 # Database: airplane-manager
-# Generation Time: 2018-01-22 21:17:33 +0000
+# Generation Time: 2018-01-23 09:02:00 +0000
 # ************************************************************
 
 
@@ -52,6 +52,32 @@ CREATE TABLE `flight` (
   PRIMARY KEY (`id`),
   KEY `IDX_C257E60E996E853C` (`airplane_id`),
   CONSTRAINT `FK_C257E60E996E853C` FOREIGN KEY (`airplane_id`) REFERENCES `airplane` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Dump of table fos_user
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `fos_user`;
+
+CREATE TABLE `fos_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
+  `username_canonical` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
+  `email_canonical` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `salt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `confirmation_token` varchar(180) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password_requested_at` datetime DEFAULT NULL,
+  `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
+  UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`),
+  UNIQUE KEY `UNIQ_957A6479C05FB297` (`confirmation_token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 

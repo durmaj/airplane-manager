@@ -144,7 +144,7 @@ class Flight
     /**
      * @param mixed $airplane
      */
-    public function setAirplane($airplane): void
+    public function setAirplane($airplane)
     {
         $this->airplane = $airplane;
     }
