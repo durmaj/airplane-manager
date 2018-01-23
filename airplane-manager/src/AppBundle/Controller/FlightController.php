@@ -81,21 +81,25 @@ class FlightController extends Controller
      */
     public function editAction(Request $request, Flight $flight)
     {
-        $deleteForm = $this->createDeleteForm($flight);
-        $editForm = $this->createForm('AppBundle\Form\FlightType', $flight);
-        $editForm->handleRequest($request);
+        if ($this->isGranted('ROLE_USER')) {
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $deleteForm = $this->createDeleteForm($flight);
+            $editForm = $this->createForm('AppBundle\Form\FlightType', $flight);
+            $editForm->handleRequest($request);
 
-            return $this->redirectToRoute('flight_edit', array('id' => $flight->getId()));
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('flight_edit', array('id' => $flight->getId()));
+            }
+
+            return $this->render('flight/edit.html.twig', array(
+                'flight' => $flight,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
         }
-
-        return $this->render('flight/edit.html.twig', array(
-            'flight' => $flight,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->redirectToRoute('homepage');
     }
 
     /**
@@ -106,16 +110,21 @@ class FlightController extends Controller
      */
     public function deleteAction(Request $request, Flight $flight)
     {
-        $form = $this->createDeleteForm($flight);
-        $form->handleRequest($request);
+        if ($this->isGranted('ROLE_USER')) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($flight);
-            $em->flush();
-        }
+            $form = $this->createDeleteForm($flight);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($flight);
+                $em->flush();
+            }
 
         return $this->redirectToRoute('flight_index');
+        }
+        return $this->redirectToRoute('homepage');
+
     }
 
     /**

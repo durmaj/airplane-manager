@@ -13,7 +13,9 @@
                 <th>Model</th>
                 <th>Max passengers</th>
                 <th>Max load</th>
+                {% if app.user %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -26,6 +28,7 @@
                 <td>{{ airplane.model }}</td>
                 <td>{{ airplane.maxPassengers }}</td>
                 <td>{{ airplane.maxLoad }}</td>
+                {% if app.user %}
                 <td>
                     <ul>
                         <li>
@@ -36,6 +39,7 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

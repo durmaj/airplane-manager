@@ -10,7 +10,9 @@
                 <th>Departure airport</th>
                 <th>Arrival airport</th>
                 <th>Flight time</th>
+                {% if app.user %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -20,6 +22,7 @@
                 <td>{{ flight.departAirport }}</td>
                 <td>{{ flight.arrivalAirport }}</td>
                 <td>{{ flight.flightTime }}</td>
+                {% if app.user %}
                 <td>
                     <ul>
                         <li>
@@ -30,6 +33,7 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

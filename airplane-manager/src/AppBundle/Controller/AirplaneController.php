@@ -81,21 +81,29 @@ class AirplaneController extends Controller
      */
     public function editAction(Request $request, Airplane $airplane)
     {
-        $deleteForm = $this->createDeleteForm($airplane);
-        $editForm = $this->createForm('AppBundle\Form\AirplaneType', $airplane);
-        $editForm->handleRequest($request);
+        if ($this->isGranted('ROLE_USER')) {
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('airplane_edit', array('id' => $airplane->getId()));
+            $deleteForm = $this->createDeleteForm($airplane);
+            $editForm = $this->createForm('AppBundle\Form\AirplaneType', $airplane);
+            $editForm->handleRequest($request);
+
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('airplane_edit', array('id' => $airplane->getId()));
+            }
+
+            return $this->render('airplane/edit.html.twig', array(
+                'airplane' => $airplane,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+
         }
+        return $this->redirectToRoute('homepage');
 
-        return $this->render('airplane/edit.html.twig', array(
-            'airplane' => $airplane,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+
     }
 
     /**
@@ -106,16 +114,20 @@ class AirplaneController extends Controller
      */
     public function deleteAction(Request $request, Airplane $airplane)
     {
-        $form = $this->createDeleteForm($airplane);
-        $form->handleRequest($request);
+        if ($this->isGranted('ROLE_USER')) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($airplane);
-            $em->flush();
+            $form = $this->createDeleteForm($airplane);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($airplane);
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('airplane_index');
         }
-
-        return $this->redirectToRoute('airplane_index');
+        return $this->redirectToRoute('homepage');
     }
 
     /**
