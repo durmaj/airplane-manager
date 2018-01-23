@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Airplane;
+use AppBundle\Entity\Flight;
 
 class DefaultController extends Controller
 {
@@ -13,9 +15,12 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $em = $this->getDoctrine()->getManager();
+
+        $airplanes = $em->getRepository('AppBundle:Airplane')->findAll();
+        $flights = $em->getRepository('AppBundle:Flight')->findAll();
+
+
+        return $this->render('default/index.html.twig', ['airplanes' => $airplanes, 'flights' => $flights]);
     }
 }

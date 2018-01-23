@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Airplane</h1>
+    <h1>Airplane info</h1>
 
     <table class="table">
         <tbody>
@@ -14,7 +14,7 @@
                 <td>{{ airplane.name }}</td>
             </tr>
             <tr>
-                <th>Prodyear</th>
+                <th>Production year</th>
                 <td>{{ airplane.prodYear }}</td>
             </tr>
             <tr>
@@ -26,24 +26,23 @@
                 <td>{{ airplane.model }}</td>
             </tr>
             <tr>
-                <th>Maxpassengers</th>
+                <th>Max passengers</th>
                 <td>{{ airplane.maxPassengers }}</td>
             </tr>
             <tr>
-                <th>Maxload</th>
+                <th>Max load</th>
                 <td>{{ airplane.maxLoad }}</td>
             </tr>
         </tbody>
     </table>
 
 
-    <a href="{{ path('airplane_index') }}"class="btn btn-success" role="button">Back to the list</a>
+    <a href="{{ path('airplane_index') }}"class="btn btn-info" role="button">Back to the list</a>
     <br>
-    <a href="{{ path('airplane_edit', { 'id': airplane.id }) }}" class="btn btn-info" role="button">Edit</a>
+    <a href="{{ path('airplane_edit', { 'id': airplane.id }) }}" class="btn btn-success" role="button">Edit</a>
 
-            {{ form_start(delete_form) }}
-                <input type="submit" class="btn btn-danger" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {{ form_start(delete_form) }}
+    <input type="submit" class="btn btn-danger" value="Delete">
+    {{ form_end(delete_form) }}
+
 {% endblock %}

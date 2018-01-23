@@ -3,16 +3,16 @@
 {% block body %}
     <h1>Airplanes list</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Prodyear</th>
+                <th>Production year</th>
                 <th>Manufacturer</th>
                 <th>Model</th>
-                <th>Maxpassengers</th>
-                <th>Maxload</th>
+                <th>Max passengers</th>
+                <th>Max load</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -41,9 +41,6 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('airplane_new') }}">Create a new airplane</a>
-        </li>
-    </ul>
+            <a href="{{ path('airplane_new') }}" class="btn btn-info" role="button">Create a new airplane</a>
+
 {% endblock %}

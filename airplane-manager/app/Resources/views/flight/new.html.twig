@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Flight creation</h1>
+    <h1>Add new flight</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="btn btn-success" type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('flight_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <br>
+    <a href="{{ path('flight_index') }}"class="btn btn-info" role="button">Back to the list</a>
+
 {% endblock %}
