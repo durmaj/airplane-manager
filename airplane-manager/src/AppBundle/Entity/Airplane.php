@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Airplane
@@ -30,7 +31,8 @@ class Airplane
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThan(1900)
+     * @Assert\LessThanOrEqual(2018)
      * @ORM\Column(name="prodYear", type="integer")
      */
     private $prodYear;
@@ -51,14 +53,14 @@ class Airplane
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThan(0)
      * @ORM\Column(name="maxPassengers", type="integer")
      */
     private $maxPassengers;
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThan(0)
      * @ORM\Column(name="maxLoad", type="integer")
      */
     private $maxLoad;

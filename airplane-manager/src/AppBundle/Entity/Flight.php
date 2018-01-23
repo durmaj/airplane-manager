@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Airplane;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Flight
@@ -16,6 +17,7 @@ class Flight
     /**
      * @ORM\ManyToOne(targetEntity="Airplane")
      * @ORM\JoinColumn(name="airplane_id", referencedColumnName="id")
+     * @Assert\NotBlank
      */
     private $airplane;
 
@@ -44,7 +46,7 @@ class Flight
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThan(0)
      * @ORM\Column(name="flightTime", type="integer")
      */
     private $flightTime;

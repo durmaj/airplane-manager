@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Airplane</th>
                 <th>Departure airport</th>
                 <th>Arrival airport</th>
                 <th>Flight time</th>
@@ -19,6 +20,7 @@
         {% for flight in flights %}
             <tr>
                 <td><a href="{{ path('flight_show', { 'id': flight.id }) }}">{{ flight.id }}</a></td>
+                <td>{{ flight.airplane }}</td>
                 <td>{{ flight.departAirport }}</td>
                 <td>{{ flight.arrivalAirport }}</td>
                 <td>{{ flight.flightTime }}</td>

@@ -47,6 +47,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Airplane</th>
                     <th>Departure airport</th>
                     <th>Arrival airport</th>
                     <th>Flight time</th>
@@ -55,6 +56,7 @@
                 <tbody>
                 {% for flight in flights %}
                     <tr>
+                        <td>{{ flight.airplane }}</td>
                         <td>{{ flight.departAirport }}</td>
                         <td>{{ flight.arrivalAirport }}</td>
                         <td>{{ flight.flightTime }}</td>
