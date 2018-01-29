@@ -16,7 +16,7 @@ class Flight
 {
     /**
      * @ORM\ManyToOne(targetEntity="Airplane")
-     * @ORM\JoinColumn(name="airplane_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="airplane_id", referencedColumnName="id", onDelete="CASCADE")
      * @Assert\NotBlank
      */
     private $airplane;

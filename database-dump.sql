@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.19)
 # Database: airplane-manager
-# Generation Time: 2018-01-23 20:50:35 +0000
+# Generation Time: 2018-01-29 12:03:06 +0000
 # ************************************************************
 
 
@@ -51,7 +51,7 @@ CREATE TABLE `flight` (
   `flightTime` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C257E60E996E853C` (`airplane_id`),
-  CONSTRAINT `FK_C257E60E996E853C` FOREIGN KEY (`airplane_id`) REFERENCES `airplane` (`id`)
+  CONSTRAINT `FK_C257E60E996E853C` FOREIGN KEY (`airplane_id`) REFERENCES `airplane` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
